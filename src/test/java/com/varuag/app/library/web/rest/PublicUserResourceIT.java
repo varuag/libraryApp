@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.varuag.app.library.IntegrationTest;
 import com.varuag.app.library.domain.User;
 import com.varuag.app.library.repository.UserRepository;
-import com.varuag.app.library.repository.search.UserSearchRepository;
 import com.varuag.app.library.security.AuthoritiesConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,14 +30,6 @@ class PublicUserResourceIT {
 
     @Autowired
     private UserRepository userRepository;
-
-    /**
-     * This repository is mocked in the com.varuag.app.library.repository.search test package.
-     *
-     * @see com.varuag.app.library.repository.search.UserSearchRepositoryMockConfiguration
-     */
-    @Autowired
-    private UserSearchRepository mockUserSearchRepository;
 
     @Autowired
     private CacheManager cacheManager;

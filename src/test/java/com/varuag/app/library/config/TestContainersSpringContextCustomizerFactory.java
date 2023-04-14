@@ -17,7 +17,6 @@ public class TestContainersSpringContextCustomizerFactory implements ContextCust
     private Logger log = LoggerFactory.getLogger(TestContainersSpringContextCustomizerFactory.class);
 
     private static MongoDbTestContainer mongoDbBean;
-    private static ElasticsearchTestContainer elasticsearchBean;
 
     @Override
     public ContextCustomizer createContextCustomizer(Class<?> testClass, List<ContextConfigurationAttributes> configAttributes) {
@@ -34,23 +33,6 @@ public class TestContainersSpringContextCustomizerFactory implements ContextCust
                     // ((DefaultListableBeanFactory)beanFactory).registerDisposableBean(MongoDbTestContainer.class.getName(), mongoDbBean);
                 }
                 testValues = testValues.and("spring.data.mongodb.uri=" + mongoDbBean.getMongoDBContainer().getReplicaSetUrl());
-            }
-            EmbeddedElasticsearch elasticsearchAnnotation = AnnotatedElementUtils.findMergedAnnotation(
-                testClass,
-                EmbeddedElasticsearch.class
-            );
-            if (null != elasticsearchAnnotation) {
-                log.debug("detected the EmbeddedElasticsearch annotation on class {}", testClass.getName());
-                log.info("Warming up the elastic database");
-                if (null == elasticsearchBean) {
-                    elasticsearchBean = beanFactory.createBean(ElasticsearchTestContainer.class);
-                    beanFactory.registerSingleton(ElasticsearchTestContainer.class.getName(), elasticsearchBean);
-                    // ((DefaultListableBeanFactory)beanFactory).registerDisposableBean(ElasticsearchTestContainer.class.getName(), elasticsearchBean);
-                }
-                testValues =
-                    testValues.and(
-                        "spring.elasticsearch.uris=http://" + elasticsearchBean.getElasticsearchContainer().getHttpHostAddress()
-                    );
             }
             testValues.applyTo(context);
         };

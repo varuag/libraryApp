@@ -35,8 +35,6 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017
       database: libraryApp
-  elasticsearch:
-    uris: http://localhost:9200
   mail:
     host: localhost
     port: 25

@@ -2,7 +2,6 @@ package com.varuag.app.library;
 
 import com.varuag.app.library.LibraryApp;
 import com.varuag.app.library.config.AsyncSyncConfiguration;
-import com.varuag.app.library.config.EmbeddedElasticsearch;
 import com.varuag.app.library.config.EmbeddedMongo;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -18,7 +17,6 @@ import org.springframework.test.annotation.DirtiesContext;
 @Retention(RetentionPolicy.RUNTIME)
 @SpringBootTest(classes = { LibraryApp.class, AsyncSyncConfiguration.class })
 @EmbeddedMongo
-@EmbeddedElasticsearch
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public @interface IntegrationTest {
 }

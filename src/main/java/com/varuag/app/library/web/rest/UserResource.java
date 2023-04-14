@@ -1,7 +1,5 @@
 package com.varuag.app.library.web.rest;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
-
 import com.varuag.app.library.config.Constants;
 import com.varuag.app.library.domain.User;
 import com.varuag.app.library.repository.UserRepository;
@@ -16,8 +14,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.Collections;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import org.slf4j.Logger;
